@@ -1,0 +1,17 @@
+/*
+
+!.gitignore
+
+!/bin/
+!/config/
+!/server/
+!/src/
+!/tests/
+
+!.env.dist
+!composer.json
+!docker-compose.yml
+!LICENSE
+!phpunit.xml.dist
+!README.md
+!xdebug.disable.ini
