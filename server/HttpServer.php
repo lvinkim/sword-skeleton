@@ -18,6 +18,10 @@ class HttpServer
 
     /** @var KernelInterface */
     private $kernel;
+
+    /** @var \swoole_table */
+    private $table;
+
     private $config;
 
     public function __construct($config)
@@ -40,13 +44,14 @@ class HttpServer
         $server->on('ManagerStart', [$this, 'onManagerStart']);
         $server->on('request', [$this, 'onRequest']);
 
+        $this->createTable();
+
         $server->start();
     }
 
     public function onRequest(Request $request, Response $response)
     {
-        $this->kernel->dispatchRequest($request, $response);
-
+        $this->kernel->dispatchRequest($request, $response, $this->table);
     }
 
     public function onWorkerStart(Server $server, int $workerId)
@@ -74,4 +79,19 @@ class HttpServer
         swoole_set_process_name("sword-master");
     }
 
+    private function createTable()
+    {
+        $tableSize = intval($this->config["tableSize"] ?? 1024);
+        $tableColumns = (array)($this->config["tableColumns"] ?? []);
+        $this->table = new \swoole_table($tableSize);
+        foreach ($tableColumns as $column) {
+            $name = strval($column["name"] ?? "");
+            $type = intval($column["type"] ?? \swoole_table::TYPE_STRING);
+            $size = intval($column["size"] ?? 4);
+            if ($name) {
+                $this->table->column($name, $type, $size);
+            }
+        }
+        $this->table->create();
+    }
 }

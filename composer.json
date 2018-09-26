@@ -2,7 +2,7 @@
   "name": "lvinkim/sword-skeleton",
   "type": "project",
   "require": {
-    "lvinkim/sword-kernel": "~0.1.1"
+    "lvinkim/sword-kernel": "~0.2.0"
   },
   "require-dev": {
     "swoft/swoole-ide-helper": "dev-master",

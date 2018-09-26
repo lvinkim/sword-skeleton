@@ -37,10 +37,11 @@ class IndexAction implements ActionInterface
      * Action 类入口函数
      * @param Request $request
      * @param Response $response
-     * @param $settings
+     * @param array $settings
+     * @param \swoole_table $table
      * @return ActionResponse
      */
-    public function __invoke(Request $request, Response $response, array $settings): ActionResponse
+    public function __invoke(Request $request, Response $response, array $settings, \swoole_table $table): ActionResponse
     {
         return new ActionResponse(json_encode(["app" => $this->exampleService->getAppName()]));
     }

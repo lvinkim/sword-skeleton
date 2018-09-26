@@ -16,6 +16,7 @@ return (function () {
 
     return [
         "app" => "sword-skeleton",
+        "workerId" => "", // 由 worker 进程设置
         "env" => getenv("ENV"),
         "projectDir" => dirname(__DIR__),
         "namespace" => "App",
