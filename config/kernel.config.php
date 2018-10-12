@@ -20,6 +20,8 @@ return (function () {
         "server" => [
             "host" => "0.0.0.0",
             "port" => "8080",
+            "masterPidPath" => dirname(__DIR__) . "/var/pid/swoole-master.pid",
+            "managerPidPath" => dirname(__DIR__) . "/var/pid/swoole-manager.pid",
         ],
         "tableSize" => 1024,
         "tableColumns" => [

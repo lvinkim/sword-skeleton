@@ -1,6 +1,6 @@
 <?php
 
-namespace Server;
+namespace App\Server;
 
 use Lvinkim\SwordKernel\Component\KernelInterface;
 use Swoole\Http\Request;
@@ -69,9 +69,14 @@ class HttpServer
 
     }
 
-    public function onManagerStart()
+    public function onManagerStart(Server $server)
     {
         swoole_set_process_name("sword-manager");
+        $masterPidPath = $this->config["server"]["masterPidPath"] ?? "";
+        $managerPidPath = $this->config["server"]["managerPidPath"] ?? "";
+
+        file_put_contents($masterPidPath, $server->master_pid);
+        file_put_contents($managerPidPath, $server->manager_pid);
     }
 
     public function onStart()

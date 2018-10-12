@@ -6,10 +6,9 @@
  * Time: 7:20 PM
  */
 
+require dirname(__DIR__) . "/server/Command.php";
 require dirname(__DIR__) . "/server/HttpServer.php";
 
-$setting = require dirname(__DIR__) . "/config/kernel.config.php";
+$settings = require dirname(__DIR__) . "/config/kernel.config.php";
 
-$httpServer = new \Server\HttpServer($setting);
-
-$httpServer->run();
+(new \App\Server\Command($settings))->run();
