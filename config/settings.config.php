@@ -18,7 +18,9 @@ return (function () {
         "app" => "sword-skeleton",
         "workerId" => "", // 由 worker 进程设置
         "env" => getenv("ENV"),
+        "debug" => ("prod" != getenv("ENV")),
         "projectDir" => dirname(__DIR__),
+        "logsDir" => dirname(__DIR__) . "/var/logs",
         "namespace" => "App",
         "routes" => require __DIR__ . "/routes.config.php",
     ];

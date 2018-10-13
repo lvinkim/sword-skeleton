@@ -14,6 +14,7 @@ use Lvinkim\SwordKernel\Component\ActionInterface;
 use Lvinkim\SwordKernel\Component\ActionResponse;
 use Swoole\Http\Request;
 use Swoole\Http\Response;
+use Swoole\Table;
 use Symfony\Component\DependencyInjection\Container;
 
 class IndexAction implements ActionInterface
@@ -38,10 +39,10 @@ class IndexAction implements ActionInterface
      * @param Request $request
      * @param Response $response
      * @param array $settings
-     * @param \swoole_table $table
+     * @param Table $table
      * @return ActionResponse
      */
-    public function __invoke(Request $request, Response $response, array $settings, \swoole_table $table): ActionResponse
+    public function __invoke(Request $request, Response $response, array $settings, Table $table): ActionResponse
     {
         return new ActionResponse(json_encode(["app" => $this->exampleService->getAppName()]));
     }

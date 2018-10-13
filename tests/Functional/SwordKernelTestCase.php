@@ -21,6 +21,10 @@ class SwordKernelTestCase extends TestCase
     /** @var Container */
     protected static $container;
 
+    /**
+     * @return Kernel
+     * @throws \Exception
+     */
     protected function bootKernel()
     {
         if (!(self::$kernel instanceof Kernel)) {
@@ -32,6 +36,10 @@ class SwordKernelTestCase extends TestCase
         return self::$kernel;
     }
 
+    /**
+     * @return Container
+     * @throws \Exception
+     */
     protected function getContainer()
     {
         if (!(self::$container instanceof Container)) {

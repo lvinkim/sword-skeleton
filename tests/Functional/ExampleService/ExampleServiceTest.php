@@ -18,6 +18,9 @@ class ExampleServiceTest extends SwordKernelTestCase
     /** @var ExampleService */
     private $exampleService;
 
+    /**
+     * @throws \Exception
+     */
     public function setUp()
     {
         $this->exampleService = self::getContainer()->get(ExampleService::class);
